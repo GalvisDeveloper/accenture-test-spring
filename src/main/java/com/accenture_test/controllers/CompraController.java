@@ -25,7 +25,6 @@ public class CompraController {
     @GetMapping("/compra/{id}")
     public String index (@PathVariable String id) {
         return factura.addProducto(id);
-
     }
 
     @GetMapping("/productos")

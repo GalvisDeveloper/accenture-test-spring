@@ -13,7 +13,7 @@ public class Factura {
     private final static double domicilio = 4000;
 
     private Factura () {
-
+        this.cliente = new Cliente("12345", "carrera 11# 14-08");
         this.products = new ArrayList<>();
     }
 
@@ -35,33 +35,21 @@ public class Factura {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
 
     public ArrayList<Producto> getProducts() {
         return products;
     }
 
-    public void setProducts(ArrayList<Producto> products) {
-        this.products = products;
-    }
 
     public double getSubtotal() {
         return subtotal;
     }
 
-    public void setSubtotal(double subtotal) {
-        this.subtotal = subtotal;
-    }
 
     public double getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
-    }
 
     public double getIva() {
         return iva;
@@ -73,5 +61,24 @@ public class Factura {
 
     public void agregarProducto (Producto prod) {
         products.add(prod);
+    }
+
+    public void calcularTotal(){
+        int aux = 0;
+        if(subtotal > 70000 && subtotal < 100000){
+            aux += subtotal * iva;
+            total = subtotal + aux + domicilio;
+        } else if (subtotal > 100000) {
+            aux += subtotal * iva;
+            total = subtotal + aux ;
+        }
+    }
+
+    public void subTotal(){
+        int aux = 0;
+        for(int i = 0; i < products.size(); i ++) {
+            aux += products.get(i).getPrecio();
+        }
+        subtotal = aux;
     }
 }

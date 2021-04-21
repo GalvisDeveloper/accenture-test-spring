@@ -2,6 +2,7 @@ package com.accenture_test.models.service;
 
 import com.accenture_test.models.entity.Cliente;
 import com.accenture_test.models.entity.Factura;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,8 +10,8 @@ import java.util.ArrayList;
 @Service
 public class ClienteService {
 
-    private Cliente cli = new Cliente();
-    private FacturaService facturaService = new FacturaService();
+    @Autowired
+    private FacturaService facturaService;
 
     public String añadirProducto(String id){
         return facturaService.addProducto(id);
